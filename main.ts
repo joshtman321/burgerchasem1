@@ -3,13 +3,15 @@ namespace SpriteKind {
     export const Player1 = SpriteKind.create()
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-	
+    if (true) {
+        pauseUntil(() => controller.A.isPressed())
+    }
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player, function (sprite, otherSprite) {
-    info.changeLifeBy(-1)
+    info.changeLifeBy(-0.5)
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
-    info.changeLifeBy(-1)
+    info.changeLifeBy(-0.5)
 })
 info.onLifeZero(function () {
     game.setGameOverMessage(true, "GAME OVER!")
@@ -94,18 +96,18 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.Enemy)
-    projectile.setBounceOnWall(true)
     Burger.setPosition(randint(10, 160), randint(10, 120))
     mySprite.setStayInScreen(true)
-    projectile2.setBounceOnWall(true)
     projectile2.setVelocity(82, 82)
     projectile.setVelocity(82, 82)
+    projectile2.setBounceOnWall(true)
+    projectile.setBounceOnWall(true)
 })
-sprites.onCreated(SpriteKind.Projectile, function (sprite) {
+scene.onOverlapTile(SpriteKind.Projectile, assets.tile`transparency16`, function (sprite, location) {
 	
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    info.changeLifeBy(-1)
+    info.changeLifeBy(-0.5)
 })
 let projectile2: Sprite = null
 let projectile: Sprite = null
